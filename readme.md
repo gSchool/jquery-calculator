@@ -2,6 +2,8 @@
 
 Goal: Use jQuery to make the provided calculator markup function as a simple calculator
 
+![](http://i.gyazo.com/be1690103f5fb61e690024030b5a80b5.gif)
+
 **Hints:**
 
 * You'll need to add jQuery yourself
