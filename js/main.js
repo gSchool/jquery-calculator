@@ -1,49 +1,37 @@
 $( document ).ready(function(e) {
-	var n=[];
-	var n2=[];
-	var result;
-	var op;
-	var index=0;
-	$("#one,#two,#three,#four,#five,#six,#seven,#eight,#nine,#zero").click(function(e){
+// variables
+	var result,op;
+// click listener of numbers
+	$("span:not(.operator)").click(function(e){
 		var str = $(this).text();
 		$("#screen").append( str );
 	});
-	// operators
-
+// click listener for operators
 	$("#cancel").click(function(e){
 		$("#screen").empty();
-		n=[];
-		n2=[];
 		result=0;
 	});
 
-	$("#divide").click(function(e){
-		n = $("#screen").text();
-		$("#screen").append( "/" );
-		op="/";
-		index=n.length;
-	});
-	$("#multi,#sub,#sum").click(function(e){
-		n = $("#screen").text();
+	$(".operator:not(#calc):not(#cancel)").click(function(e){
 		var str = $(this).text();
-		$("#screen").append( str );
+		$("#screen").append(str);
 		op=str;
-		index=n.length;
 	});
+
 	$("#calc").click(function(e){
-		n2 = $("#screen").text().slice(index+1);
+		var num=$("#screen").text().split(op);
 		switch(op) {
 		    case "+":
-		        result=parseInt(n)+parseInt(n2);
+		        result=parseInt(num[0])+parseInt(num[1]);
 		        break;
 		    case "-":
-		        result=parseInt(n)-parseInt(n2);
+		        result=parseInt(num[0])-parseInt(num[1]);
 		        break;
 		    case "x":
-		        result=parseInt(n)*parseInt(n2);
+		        result=parseInt(num[0])*parseInt(num[1]);
 		        break;
-		    case "/":
-		        result=parseInt(n)/parseInt(n2);
+		    case "\u00f7":
+		        result=parseInt(num[0])/parseInt(num[1]);
 		        break;
 		    default:
 		        break;
