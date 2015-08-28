@@ -34,8 +34,9 @@ $(function() {
       case "x":
         $calcScreen.text(num1*num2);
         break;
-      default:
+      case "\xf7":
         $calcScreen.text(num1/num2);
+        break;
     }
     expression = $calcScreen.text();
     currentOp = "";
