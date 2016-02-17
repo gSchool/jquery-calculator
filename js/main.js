@@ -1,59 +1,87 @@
 $(function(){
 
-  var opChosen = null;
-  var storedValue = null;
-  $("#screen").text('0');
+  function Calculator(){
+    this.opChosen = null;
+    this.storedValue = null;
+    this.currentValue = '0';
+  }
+  Calculator.prototype = {
+    _clearStored: function(){
+      this.opChosen = null;
+      this.storedValue = null;
+    },
+    performOp: function(){
+      if(!this.isReadyToCompute()) return false;
+      var result = null;
+      if(this.opChosen === '+'){
+        result = Number(this.storedValue) + Number(this.currentValue);
+      }else if(this.opChosen === '-') {
+        result = Number(this.storedValue) - Number(this.currentValue);
+      }else if(this.opChosen === "\u00f7"){
+        result = Number(this.storedValue) / Number(this.currentValue);
+      }else{
+        result = Number(this.storedValue) * Number(this.currentValue);
+      }
+      this.currentValue = result;
+      this._clearStored();
+      return result;
+    },
+    clear: function(){
+      this._clearCurrent();
+      this._clearStored();
+    },
+    _clearCurrent: function(){
+      this.currentValue = '0';
+    },
+    isReadyToCompute: function(){
+      return this.opChosen || this.storedValue;
+    },
+    setOp: function(op){
+      this.opChosen = op;
+    },
+    storeValue: function(val){
+      if(this.opChosen && !this.storedValue){
+        this.storedValue = this.currentValue;
+        this._clearCurrent();
+      }
+    },
+    currentVal: function(val){
+      if(!val || (val === '0' && this.currentValue === '0')) {
+        return this.currentValue;
+      }else{
+        if(this.currentValue === '0') return this.currentValue = val;
+        return this.currentValue += val;
+      }
+    }
+  };
 
-  $('.buttons').on('click', function(event){
-    var clicked = event.toElement;
-    var currentValue = $('#screen').text();
 
-    if($(clicked).hasClass('operator')){
-      var operator = $(clicked).text();
+  var calculator = new Calculator();
 
-      if (operator === '=' && storedValue ){
-        $('#screen').text(performOp(storedValue, currentValue, opChosen));
-        clearState();
+  $("#screen").text(calculator.currentValue);
+  console.log(calculator)
+  $('span').on('click', function(){
+    if($(this).hasClass('operator')){
+      var operator = $(this).text();
+
+      if (operator === '='){
+        if(calculator.isReadyToCompute()) calculator.performOp();
       }else if (operator === 'C') {
         clearScreen();
-        clearState();
+        calculator.clear();
       }else{
-        if(opChosen && storedValue){
-          $('#screen').text(performOp(storedValue, currentValue, opChosen));
-          clearState();
-        }
-        opChosen = operator;
+        if(calculator.isReadyToCompute()) calculator.performOp();
+        calculator.setOp(operator);
       }
-    }else if(clicked.tagName === "SPAN"){
-      if(opChosen && !storedValue){
-        storedValue = currentValue;
-        currentValue = ""
-      }
-      number = $(clicked).text();
-      if(currentValue === '0' && number === '0') return;
-      if(currentValue === '0') currentValue = '';
-      $("#screen").text(currentValue += number);
+    }else{
+      calculator.storeValue();
+      number = $(this).text();
+      calculator.currentVal(number);
     }
+    $('#screen').text(calculator.currentVal());
 
     function clearScreen(){
-      $('#screen').text("0");
+      $('#screen').text('0');
     }
-
-    function performOp(num1, num2, op){
-      if(op === '+') return Number(num1) + Number(num2);
-      if(op === '-') return Number(num1) - Number(num2);
-      if(op === "\u00f7") return Number(num1) / Number(num2);
-      if(op === 'x') return Number(num1) * Number(num2);
-    }
-
-    function clearState(){
-      opChosen = null;
-      storedValue = null;
-    }
-
-
-
   });
-
-
 });
