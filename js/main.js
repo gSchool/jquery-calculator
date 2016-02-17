@@ -1,44 +1,80 @@
 $(function() {
-  var screen = document.getElementById('screen');
-  var total = 0;
+  var scrn = document.getElementById('screen');
+  var show = document.createElement('p');
+  show.style.textAlign = 'right';
+  show.style.marginTop = '-4px';
   var firstNum = '';
   var opp = '';
+  var total = 0;
   var disp = 0;
+  var last = 0;
 
-  $('span').on('click', function(e){
-    if($(this).attr('id') == 'cancel'){
+  $('span').on('click', function() {
+    if ($(this).attr('id') == 'cancel') {
+      scrn.removeChild(scrn.lastChild)
       firstNum = '';
       opp = '';
       total = 0;
-      return firstNum, opp, total;
+      last = 0;
+      disp = 0;
+      return firstNum, opp, total, last;
     }
-    if($(this).attr('id') == 'calc'){
-      if( opp == 'x' ){
+    if ($(this).attr('id') == 'calc') {
+      if (opp.substr(opp.length - 1) == 'x') {
+        if (scrn.hasChildNodes()) {
+          scrn.removeChild(scrn.lastChild);
+        }
         disp = total * parseInt(firstNum);
-        console.log(disp + 'fuckyeah');
+        last = disp;
+        show.innerText = disp;
+        scrn.appendChild(show)
       }
-      if( opp == '-' ){
+      if (opp.substr(opp.length - 1) == '-') {
+        if (scrn.hasChildNodes()) {
+          scrn.removeChild(scrn.lastChild);
+        }
         disp = total - parseInt(firstNum);
-        console.log(disp + 'fuckyeah');
+        last = disp;
+        show.innerText = disp;
+        scrn.appendChild(show)
       }
-      if( opp == '+' ){
+      if (opp.substr(opp.length - 1) == '+') {
+        if (scrn.hasChildNodes()) {
+          scrn.removeChild(scrn.lastChild);
+        }
         disp = total + parseInt(firstNum);
-        console.log(disp + 'fuckyeah');
+        last = disp;
+        show.innerText = disp;
+        scrn.appendChild(show);
       }
-      if( opp == '\xF7' ){
+      if (opp.substr(opp.length - 1) == '\xF7') {
+        if (scrn.hasChildNodes()) {
+          scrn.removeChild(scrn.lastChild);
+        }
         disp = total / parseInt(firstNum);
-        console.log(disp + 'fuckyeah');
+        last = disp;
+        show.innerText = disp;
+        scrn.appendChild(show);
       }
     }
-    if($(this).attr('class') == 'operator') {
-      opp += ($(this).text());
-      total = parseInt(firstNum);
-      firstNum = '';
-      console.log(opp + 'h');
-      
+    if ($(this).attr('class') == 'operator') {
+      if (last !== 0) {
+        opp += ($(this).text());
+        total = last;
+        firstNum = '';
+
+      } else {
+        opp += ($(this).text());
+        total = parseInt(firstNum);
+        firstNum = '';
+      }
     } else {
-      firstNum += $(this).text();
-      console.log(firstNum + 'f');
+      if (scrn.hasChildNodes()) {
+        scrn.removeChild(scrn.lastChild);
+      }
+      firstNum += $(this).text()
+      show.innerText = firstNum;
+      scrn.appendChild(show);
     }
   })
 })
