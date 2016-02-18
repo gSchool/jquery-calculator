@@ -10,21 +10,19 @@ $(document).ready(function(){
 
     if(fin.length != 0){
       $('#screen').html("");
-      fin.splice(0, 1);
+      fin.splice(0, 1)
     };
 
     if((info !== '=')&&(info !== 'C')&&(info !== 'x')&&(info !== divide1)){
       $('#screen').append(info);
-      answer.push(info);
-      console.log(answer);
+      answer.push(info)
     }else if(info == 'x'){
       $('#screen').append('x');
       answer.push('*');
     }else if(info == divide1){
       $('#screen').append('&divide;');
-      answer.push('/');
-    };
-    console.log(fin);
+      answer.push('/')
+    }
   });
 
   $('#calc').on('click', function(event){
@@ -33,13 +31,11 @@ $(document).ready(function(){
     $('#screen').html("");
     $('#screen').append(ans);
     answer.length = 0;
-    fin.push('1');
-    console.log(fin);
+    fin.push('1')
   });
 
   $('#cancel').on('click', function(event){
     $('#screen').html("");
-    answer.length = 0;
-  });
-
+    answer.length = 0
+  })
 });
