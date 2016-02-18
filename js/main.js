@@ -4,24 +4,21 @@ $(document).ready(function(){
 
   $('span').on('click', function(event){
     if(event.target.textContent === "=") {
-      eval(equation);
-    }
-    if(event.target.textContent === "C") {
+      console.log(eval(equation));
+    } else if(event.target.textContent === "C") {
       equation = "";
       console.log(equation);
-    }
-    if(event.target.textContent === "x") {
+    } else if(event.target.textContent === "x") {
       equation += "*";
       console.log(equation);
-    }
-    if(event.target.textContent === "&divide;") {
+    } else if(event.target.textContent === "&divide;") {
       equation += "/";
       console.log(equation);
+    } else {
+      equation += (event.target.textContent);
+      console.log(equation);
     }
-    // if (Number(event.target.text())) {
-    //   equation += event.target.text();
-    //   console.log(equation);
-    // }
-// $('#screen')
+    // GET SCREEN WORKING
+    // $('#screen').textContent = equation;
   });
 })
