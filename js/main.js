@@ -6,6 +6,7 @@ $(document).ready(function () {
 
   $('span').on('click', function (e) {
     lastval = $(e.target).text();
+    console.log(lastval);
     $('#screen').empty();
     $('#screen').append(mem(lastval));
   });
@@ -24,7 +25,7 @@ $(document).ready(function () {
   };
 
   function operate ( arr ) {
-    
+
     if( arr[1] === '+'){
       memory[1] = lastval;
       return arr[0] = arr[0] + arr[2];
