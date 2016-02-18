@@ -2,7 +2,7 @@ $(function(){
 
   var screen = $('#screen');
 
-  $(".buttons").on('mousedown', function(e){
+  $(".buttons").children().on('mousedown', function(e){
 
     if($(e.target).is($('#calc')))
       screen.text(eval(screen.text()));
