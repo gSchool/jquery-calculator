@@ -3,26 +3,25 @@ $(document).ready(function(){
   var equation = "";
 
   $('span').on('click', function(event){
-    if(event.target.innerText === "=") {
-      console.log(eval(equation));
-      console.log("hi!");
+    if(event.target.textContent === "=") {
+      eval(equation);
     }
-    if(event.target.innerText === "C") {
+    if(event.target.textContent === "C") {
       equation = "";
       console.log(equation);
     }
-    if(event.target.innerText === "x") {
+    if(event.target.textContent === "x") {
       equation += "*";
       console.log(equation);
     }
-    if(event.target.innerText === "&divide;") {
-      equation += '\/';
+    if(event.target.textContent === "&divide;") {
+      equation += "/";
       console.log(equation);
     }
-    var target = $(event.target);
-    if (Number(target.text())) {
-      equation += target.text();
-      console.log(equation);
-    }
+    // if (Number(event.target.text())) {
+    //   equation += event.target.text();
+    //   console.log(equation);
+    // }
+// $('#screen')
   });
 })
