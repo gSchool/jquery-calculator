@@ -6,6 +6,7 @@ $(function(){
   var operandOne = 0;
   var operandTwo = 0;
   var clearBetweenOperands = true;
+  var postEquals = false;
   var result = 0;
 
   $(numberKeys).on('click', function(){
@@ -55,6 +56,7 @@ $(function(){
         operator = '';
         operandTwo = 0;
         clearBetweenOperands = true;
+        postEquals = true;
 
       } else if ($(this).attr('id') == 'cancel'){
         numberScreen = "";
@@ -70,6 +72,10 @@ $(function(){
 
     } else { //you're just entering a number
       if(operator == ''){
+        if(postEquals){
+          numberScreen = "";
+          $('div#screen').text(numberScreen);
+        }
         numberScreen += $(this).text();
         $('div#screen').text(numberScreen);
 
