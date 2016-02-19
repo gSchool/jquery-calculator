@@ -1,7 +1,23 @@
+$(document).ready(function(){
 
-$( "body" ).click(function( event ) {
+  var calculation = [];
 
-  console.log('ready');
+  $( "body" ).on('click', function( event ) {
 
-  // $( "#log" ).html( "clicked: " + event.target.nodeName );
+    var info = $(event.target).text();
+    $('#screen').append(info);
+    calculation.push(info);
+
+    console.log(calculation);
+
+    if(event.target === '='){
+
+    var sum = calculation.join("");
+
+    return sum;
+
+    console.log(sum);
+
+  }
+});
 });
