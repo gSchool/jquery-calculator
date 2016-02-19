@@ -14,7 +14,10 @@ $(function(){
       str += '/';
     } else if (button == '='){
       // console.log('result: ', eval(str))
-
+      function calc(str) {
+        return new Function('return ' + str)();
+      }
+      $('#screen').append( calc(str) );
     } else {
       str += button;
     }
