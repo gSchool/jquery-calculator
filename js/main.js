@@ -9,7 +9,7 @@ $(function() {
     if ($(this).text() === 'x') {
       $("#screen").append('*');
     }
-    else if ($(this).text() !== '=') {
+    else if (($(this).text() !== '=') && ($(this).text() !== '\u00f7')) {
     $("#screen").append($(this).text());
   }
   })
