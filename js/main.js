@@ -1,56 +1,64 @@
 $(function(){
 
   function Calculator(){
-    this.opChosen = null;
-    this.storedValue = null;
-    this.currentValue = '0';
+    this._opChosen = null;
+    this._storedValue = null;
+    this._currentValue = '0';
+    this._resultCalculated = false;
   }
   Calculator.prototype = {
     _clearStored: function(){
-      this.opChosen = null;
-      this.storedValue = null;
+      this._opChosen = null;
+      this._storedValue = null;
     },
     performOp: function(){
       if(!this.isReadyToCompute()) return false;
       var result = null;
-      if(this.opChosen === '+'){
-        result = Number(this.storedValue) + Number(this.currentValue);
-      }else if(this.opChosen === '-') {
-        result = Number(this.storedValue) - Number(this.currentValue);
-      }else if(this.opChosen === "\u00f7"){
-        result = Number(this.storedValue) / Number(this.currentValue);
+      if(this._opChosen === '+'){
+        result = Number(this._storedValue) + Number(this._currentValue);
+      }else if(this._opChosen === '-') {
+        result = Number(this._storedValue) - Number(this._currentValue);
+      }else if(this._opChosen === "\u00f7"){
+        result = Number(this._storedValue) / Number(this._currentValue);
       }else{
-        result = Number(this.storedValue) * Number(this.currentValue);
+        result = Number(this._storedValue) * Number(this._currentValue);
       }
-      this.currentValue = result;
+      this._currentValue = result;
+      this._resultCalculated = true;
       this._clearStored();
       return result;
     },
     clear: function(){
       this._clearCurrent();
       this._clearStored();
+      this._resultCalculated = false;
     },
     _clearCurrent: function(){
-      this.currentValue = '0';
+      this._currentValue = '0';
     },
     isReadyToCompute: function(){
-      return this.opChosen || this.storedValue;
+      return this._opChosen && this._storedValue;
     },
     setOp: function(op){
-      this.opChosen = op;
+      this._opChosen = op;
+      this._resultCalculated = false;
     },
     storeValue: function(val){
-      if(this.opChosen && !this.storedValue){
-        this.storedValue = this.currentValue;
+      if(this._opChosen && !this._storedValue){
+        this._storedValue = this._currentValue;
         this._clearCurrent();
       }
     },
     currentVal: function(val){
-      if(!val || (val === '0' && this.currentValue === '0')) {
-        return this.currentValue;
+      if(!val || (val === '0' && this._currentValue === '0')) {
+        return this._currentValue;
       }else{
-        if(this.currentValue === '0') return this.currentValue = val;
-        return this.currentValue += val;
+        if(this._currentValue === '0') return this._currentValue = val;
+        if(this._resultCalculated === true){
+          this._resultCalculated = false;
+          this._currentValue = "";
+        }
+        return this._currentValue += val;
       }
     }
   };
@@ -58,8 +66,7 @@ $(function(){
 
   var calculator = new Calculator();
 
-  $("#screen").text(calculator.currentValue);
-  console.log(calculator)
+  $("#screen").text(calculator.currentVal());
   $('span').on('click', function(){
     if($(this).hasClass('operator')){
       var operator = $(this).text();
