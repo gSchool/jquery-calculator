@@ -7,13 +7,15 @@ $(function(){
     console.log('input', button);
     if(button == "x"){
       str += '*';
-    } else if(button == "÷"){
-      str += '/';
+      $('#screen').empty();
     } else if(button == "C"){
       str = '0';
       $('#screen').empty();
+    } else if(button == "÷"){
+      str += '/';
+      $('#screen').empty();
     } else if (button == '='){
-      // without using eval()
+      $('#screen').empty();
       function calc(str) {
         return new Function('return ' + str)();
       }
@@ -21,6 +23,5 @@ $(function(){
     } else {
       str += button;
     }
-    console.log('string', str)
-  });
+  })
 })
