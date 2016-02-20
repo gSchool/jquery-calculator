@@ -27,7 +27,7 @@ $(document).ready(function(){
 
   $('#calc').on('click', function(event){
     anstring = answer.join("");
-    ans = eval(anstring)
+    ans = eval(anstring);
     $('#screen').html("");
     $('#screen').append(ans);
     answer.length = 0;
