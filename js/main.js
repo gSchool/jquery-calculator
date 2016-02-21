@@ -5,16 +5,21 @@ $(document).ready(function(){
     var info = $(event.target).text();
     var calcClass = event.target.className;
     var calcID = event.target.id;
-$('#screen').append(info);
+
 
 if(calcID === 'cancel'){
 
   $('#screen').empty();
 
-} if else(calcID === 'calc') {
+} else if(calcID === 'calc') {
 
-  
+  var formula = $('#screen').text();
+  var newVar = eval(formula);
+  console.log(newVar);
+  console.log(formula);
 
+} else {
+  $('#screen').append(info);
 }
 
 
