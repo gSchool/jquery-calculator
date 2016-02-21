@@ -1,12 +1,8 @@
 $(document).ready(function(){
-
   $( "#button-container span" ).on('click', function( event ) {
     console.log(event);
     var info = $(event.target).text();
-    console.log(info);
-    var hiddenInfo = '';
     var calcID = event.target.id;
-
 
 if(calcID === 'cancel'){
 
@@ -16,27 +12,28 @@ if(calcID === 'cancel'){
 
   var formula = $('#screen').text();
   var newVar = eval(formula);
-  // console.log(newVar);
-  // console.log(formula);
+
+
+  console.log(newVar);
+  console.log(formula);
   $('#screen').text(newVar);
 
-  // var regex = /([\+\x\\u00F7\-])/;
-  // var a = formula.split('[\+\x\u00F7\-]');
-  //
-  // console.log(a);
 
+  var a = formula.split(/('[\+\*\/\-]')/);
 
+  console.log(a);
 
-} else {
-  $('#screen').append(info);
+} else if ( $(event.target).text() === $('.operator:eq(1)').text() ){
 
-  if (info === '\u00F7') {
-           += '/';
-      } else if (buttons[i].innerHTML === 'x') {
-         result.innerHTML  += '*';
-      } else {
-         result.innerHTML  += buttons[i].innerHTML;
-      }
+    $('#screen').append('/');
+
+  } else if ( $(event.target).text() === $('.operator:eq(2)').text() ){
+
+    $('screen').append('*');
+
+  } else {
+    $('#screen').append(info);
+
 
 }
 
@@ -44,3 +41,12 @@ if(calcID === 'cancel'){
 
     });
 });
+
+
+//
+//
+// if (info === $('.operator:eq(1)').text()) {
+//     $(hiddenScreen).append('/');
+//     } else if (info === $('.operator:eq(2)').text()) {
+//       hiddenScreen += '*';
+//     }
