@@ -17,6 +17,7 @@ if(calcID === 'cancel'){
   var newVar = eval(formula);
   console.log(newVar);
   console.log(formula);
+  $('#screen').text(newVar);
 
 } else {
   $('#screen').append(info);
