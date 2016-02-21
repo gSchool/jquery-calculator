@@ -13,14 +13,29 @@ if(calcID === 'cancel'){
   var formula = $('#screen').text();
   var newVar = eval(formula);
 
-  // console.log(newVar);
-  // console.log(formula);
-  // $('#screen').text(newVar);
+  var regex = /([\+\/\*\-])/;
+  var splitFormula = formula.split(regex);
 
- var regex = /([\+\/\*\-])/;
-  var a = formula.split(regex);
+  if( splitFormula[1] === '+' ){
+    var answer = parseInt(splitFormula[0]) + parseInt(splitFormula[2]);
 
-  console.log(a);
+      $('#screen').text(answer);
+
+  } else if ( splitFormula[1] === '-' ){
+    var answer = parseInt(splitFormula[0]) - parseInt(splitFormula[2]);
+
+      $('#screen').text(answer);
+
+  } else if ( splitFormula[1] === '*' ){
+    var answer = parseInt(splitFormula[0]) * parseInt(splitFormula[2]);
+
+      $('#screen').text(answer);
+
+  } else if ( splitFormula[1] === '/' ){
+    var answer = parseInt(splitFormula[0]) / parseInt(splitFormula[2]);
+
+      $('#screen').text(answer);
+  }
 
 } else if ( $(event.target).text() === $('.operator:eq(1)').text() ){
 
@@ -33,19 +48,7 @@ if(calcID === 'cancel'){
   } else {
     $('#screen').append(info);
 
-
 }
-
-
 
     });
 });
-
-
-//
-//
-// if (info === $('.operator:eq(1)').text()) {
-//     $(hiddenScreen).append('/');
-//     } else if (info === $('.operator:eq(2)').text()) {
-//       hiddenScreen += '*';
-//     }
