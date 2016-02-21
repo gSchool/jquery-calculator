@@ -7,6 +7,16 @@ $(document).ready(function(){
     var calcID = event.target.id;
 $('#screen').append(info);
 
+if(calcID === 'cancel'){
+
+  $('#screen').empty();
+
+} if else(calcID === 'calc') {
+
+  
+
+}
+
 
 
     });
