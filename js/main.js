@@ -13,13 +13,12 @@ if(calcID === 'cancel'){
   var formula = $('#screen').text();
   var newVar = eval(formula);
 
+  // console.log(newVar);
+  // console.log(formula);
+  // $('#screen').text(newVar);
 
-  console.log(newVar);
-  console.log(formula);
-  $('#screen').text(newVar);
-
-
-  var a = formula.split(/('[\+\*\/\-]')/);
+ var regex = /([\+\/\*\-])/;
+  var a = formula.split(regex);
 
   console.log(a);
 
@@ -29,7 +28,7 @@ if(calcID === 'cancel'){
 
   } else if ( $(event.target).text() === $('.operator:eq(2)').text() ){
 
-    $('screen').append('*');
+    $('#screen').append('*');
 
   } else {
     $('#screen').append(info);
