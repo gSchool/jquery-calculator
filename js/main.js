@@ -1,5 +1,5 @@
-$(function () {
-
+$(function() {
+// \u00F7 division code
   $("#button-container span").on('click', function(event) {
     console.log(event)
 
@@ -8,11 +8,11 @@ $(function () {
     var calcId = event.target.id;
 
 
-    if(calcId === 'cancel') {
+    if (calcId === 'cancel') {
 
       $('#screen').empty();
 
-    } else if(calcId === 'calc') {
+    } else if (calcId === 'calc') {
 
       var formula = $('#screen').text();
       var newVar = eval(formula);
@@ -23,8 +23,7 @@ $(function () {
     } else {
       $('#screen').append(info);
     }
-
-
+    
   });
 
 })
