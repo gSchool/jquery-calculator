@@ -12,7 +12,6 @@ $(function(){
     input.push(this.innerText);
     if ($(this).hasClass('operator')) {
       operator = this.innerText;
-      console.log(operator);
     }
   })
 
@@ -63,7 +62,6 @@ $(function(){
     val2 = [];
     operator = '';
     output = 0;
-    return this;
 
   })
 
