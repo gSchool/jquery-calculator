@@ -21,7 +21,9 @@ $('#zero').click(function() {
 $("#calc").click(function() {
   math = $("#screen").text();
   math =  math.replace('=', '');
-  math = math.replace('x', '*');
+  math = math.replace('--', '-');
+  math = math.replace('++', '+')
+  math = math.replace(/x/g, '*');
   math = math.replace('\u00F7','/');
   console.log(math = eval(math));
   $("#screen").text(math);
