@@ -12,7 +12,7 @@ $(document).ready(function(){
     evaluate = evaluate.replace("--", "-");
     evaluate = evaluate.replace("=", " ");
     evaluate = evaluate.replace(/x/g, "*");
-    evaluate = evaluate.replace("\u00F7", "/");
+    evaluate = evaluate.replace(/([^-+*0-9])/g, "/");
     var total = eval(evaluate);
     if(total === Infinity) {
       total = "Undefined";
