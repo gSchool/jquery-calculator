@@ -16,8 +16,7 @@ $(document).ready(function(){
     var total = eval(evaluate);
     if(total === Infinity) {
       total = "Undefined";
-    }
-    else {
+    } else {
       total = total;
     }
     $('#screen').text(total);
