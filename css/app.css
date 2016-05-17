@@ -2,6 +2,8 @@
 
 body {
   background: #71B66F;
+  box-sizing: border-box;
+  margin: 0;
   padding: 20px;
   width: 100%;
 }
@@ -27,8 +29,9 @@ body {
   font-family: 'Orbitron', sans-serif;
   font-size: 1.4em;
   font-weight: 600;
-  height: 17px;
-  padding: 15px;
+  height: 23px;
+  overflow: hidden;
+  padding: 12px 15px;
   width: 265px;
   z-index: 1;
 }
@@ -37,22 +40,26 @@ body {
   width: 225px;
 }
 
-#cancel {
+#clear {
   background: #CF7C43;
   width: 147px;
 }
 
-#calc {
+#clear:active {
+  background-color: #E67E22;
+}
+
+#equals {
   height: 89px;
 }
 
-#button-container {
+#buttons-container {
   padding: 30px 0 0 15px;
 }
 
 .l-row {
   position: absolute;
-  top: 362px;
+  top: 354px;
 }
 
 .buttons {
@@ -75,6 +82,7 @@ body {
 }
 
 .buttons span:active {
+  background-color: #4AA3DF;
   top: 3px;
   box-shadow: inset 0px 1px 0px #5E626D, 0px 2px 0px 0px #45637F;
 }

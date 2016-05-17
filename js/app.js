@@ -1,51 +1,59 @@
-$(function() {
+(function() {
+  'use strict';
 
-  var $buttons = $('.buttons'),
-      $calcScreen = $("#screen"),
-      expression = "",
-      currentOp = "";
+  var $screen = $('#screen');
 
-  $buttons.on('click', 'span:not(#cancel, #calc)', function() {
-    var $el = $(this);
-    var isOp = $el.hasClass('operator');
-    /* update the character view unless you clicked on an operator and the view is empty,
-    OR, you clicked on an operator and an operator has already been set */
-    if (!isOp || isOp && expression.length > 0 && !currentOp) {
-      expression += $el.text();
-      if (isOp) {
-        currentOp = $el.text();
-      }
+  $('#clear').on('click', function() {
+    $screen.text('');
+  });
+
+  $('#equals').on('click', function() {
+    var screen = $screen.text();
+
+    if (screen === 'Error') {
+      return;
     }
-    $calcScreen.text(expression);
-  });
 
-  $buttons.on('click', '#calc', function() {
-    var numArray = expression.split(currentOp),
-        num1 = numArray[0].length > 0 ? parseInt(numArray[0]) : 0,
-        defaultNum2 = currentOp === "+" || currentOp === "-" ? 0 : 1,
-        num2 = numArray[1].length > 0 ? parseInt(numArray[1]) : defaultNum2;
-    switch (currentOp) {
-      case "+":
-        $calcScreen.text(num1+num2);
-        break;
-      case "-":
-        $calcScreen.text(num1-num2);
-        break;
-      case "x":
-        $calcScreen.text(num1*num2);
-        break;
-      case "\xf7":
-        $calcScreen.text(num1/num2);
-        break;
+    var regexp = /^(\-?\d+)(\+|\-|x|÷)(\-?\d+)$/;
+
+    var matches = screen.match(regexp);
+
+    if (matches === null) {
+      $screen.text('Error');
+      return;
     }
-    expression = $calcScreen.text();
-    currentOp = "";
+
+    var operand1 = parseInt(matches[1], 10);
+    var operand2 = parseInt(matches[3], 10);
+    var operator = matches[2];
+    var total;
+
+    if (operator === '+') {
+      total = operand1 + operand2;
+    }
+    else if (operator === '-') {
+      total = operand1 - operand2;
+    }
+    else if (operator === 'x') {
+      total = operand1 * operand2;
+    }
+    else if (operator === '÷') {
+      total = operand1 / operand2;
+    }
+
+    var nextScreen = total.toString();
+
+    $screen.text(nextScreen);
   });
 
-  $buttons.on('click', '#cancel', function() {
-    expression = "";
-    currentOp = "";
-    $calcScreen.text("");
-  });
+  $('.buttons span:not(#clear):not(#equals)').on('click', function(event) {
+    var screen = $screen.text();
 
-});
+    if (screen === 'Error') {
+      return;
+    }
+
+    var nextScreen = screen + event.target.textContent;
+    $screen.text(nextScreen);
+  });
+})();
