@@ -20,3 +20,14 @@ Try to solve the exercise without touching the HTML file.
 ### Bonus 2
 
 Try to evaluate the expression without using the `eval()` function.
+
+## Deployment
+
+Review the following articles on the Surge platform and then deploy your website to production.
+
+- [Getting started with Surge](http://surge.sh/help/getting-started-with-surge)
+- [Remembering a domain](http://surge.sh/help/remembering-a-domain)
+
+A good domain name for this project is `USERNAME-jquery-calculator.surge.sh` where `USERNAME` is your GitHub username in all **lowercase** letters. Once deployed and everything works as you expect, copy the URL to your site and paste it below.
+
+PASTE YOUR PRODUCTION URL HERE
