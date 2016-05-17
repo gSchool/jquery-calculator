@@ -1,16 +1,20 @@
-#Calculator Assignment
+# jQuery Calculator
 
-Goal: Use jQuery to make the provided calculator markup function as a simple calculator
+Use jQuery to build a basic calculator using the provided HTML and CSS.
 
-![](http://i.gyazo.com/be1690103f5fb61e690024030b5a80b5.gif)
+![Example](screenshots/example.gif)
 
-**Hints:**
+More specifically, the app should allow a user to do the following.
 
-* You'll need to add jQuery yourself
-* What does this snippet in the html do? `&divide;`
-* Don't manually add event listeners to all number buttons and operator buttons individually. Be efficient!
-* Try to do this without altering the original html
+- Click an operand or operator button to append its corresponding text to the screen.
+  - If the screen displays the message `Error`, don't append anything.
+- Click the `clear` button to remove all the text from the screen.
+- Click the `equals` button to evaluate the arithmetic expression shown in the screen.
+  - If the expression is in format `operand(+|-|x|÷)operand`, evaluate the expression and update the screen with the result.
+  - If the expression isn't in the correct format or when attempting to divide by zero, update the screen with the message `Error`.
 
-**Bonus:**
+**NOTE:** Try to evaluate the expression without using the `eval()` function.
 
-* Test all of your JS functions!
+### Bonus
+
+Add the ability to evaluate an expression with multiple operators.
