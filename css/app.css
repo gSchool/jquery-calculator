@@ -37,16 +37,16 @@ body {
   width: 225px;
 }
 
-#cancel {
+#clear {
   background: #CF7C43;
   width: 147px;
 }
 
-#calc {
+#equals {
   height: 89px;
 }
 
-#button-container {
+#buttons-container {
   padding: 30px 0 0 15px;
 }
 
