@@ -46,7 +46,7 @@
     $screen.text(nextScreen);
   });
 
-  $('.buttons span:not(#clear):not(#equals)').on('click', function(event) {
+  $('.buttons').on('click', 'span:not(#clear):not(#equals)', function(event) {
     var screen = $screen.text();
 
     if (screen === 'Error') {
