@@ -15,11 +15,21 @@ More specifically, the app should allow a user to do the following.
 
 ### Bonus 1
 
-Try to solve the exercise without touching the HTML file.
+Try to solve the exercise without changing the existing HTML nested inside the `buttons-container` tag.
 
 ### Bonus 2
 
 Try to evaluate the expression without using the `eval()` function.
+
+### Bonus 3
+
+Enhance the calculator so users can input arithmetic expressions using their keyboard. More specifically, the app should allow a user to do the following.
+
+- Type an arithmetic expression directly to the `screen`.
+- Press the `Enter` key to evaluate the screen's expression.
+- Press the `Escape` key to clear the screen.
+
+**TIP:** You'll have to change the `screen` to an `<input>` tag.
 
 ## Deployment
 
