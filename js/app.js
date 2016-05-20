@@ -38,6 +38,11 @@
       total = operand1 * operand2;
     }
     else if (operator === '÷') {
+      if (operand2 === 0) {
+        $screen.text('Error');
+        return;
+      }
+
       total = operand1 / operand2;
     }
 
