@@ -1,55 +1,66 @@
-$(function(){
+$(document).ready(function() {
 
-  var $buttons = $('span');
-  var operator = null;
-  var operatorUsedBefore = false;
+//if button clicked is a number, store first and second number in two variables
+//if button is operator, store value in variable
+//update screen to show the values
+//if button is equals, perform calculation
 
-  $buttons.on('click', function(){
-    var isOperator = $(this).hasClass('operator');
-    var button = $(this);
-    var display = $('#screen');
+  var numString = '';
+  var num1, num2;
+
+  $('#button-container').on('click', 'span', function(){
+
+    //extract button class and text
+    var buttonClass = $(this).attr("class");
+    var buttonId = $(this).attr('id');
+    var buttonText = $(this).text();
+    var screen = $('#screen');
+
+    if (buttonId === "calc"){
+      //check for addition
+      if (numString.includes("+")){
+        numString = numString.split("+");
+        num1 = parseInt(numString[0]);
+        num2 = parseInt(numString[1]);
+        screen.text(num1 + num2);
+      }
+
+      //check for subraction
+      if (numString.includes("-")){
+        numString = numString.split("-");
+        num1 = parseInt(numString[0]);
+        num2 = parseInt(numString[1]);
+        screen.text(num1 - num2);
+      }
+
+      //check for multiplication
+      if (numString.includes("x")){
+        numString = numString.split("x");
+        num1 = parseInt(numString[0]);
+        num2 = parseInt(numString[1]);
+        screen.text(num1 * num2);
+
+      }
+
+      if (numString.includes("÷")){
+        numString = numString.split("÷");
+        num1 = parseInt(numString[0]);
+        num2 = parseInt(numString[1]);
+        screen.text(num1 / num2);
+
+      }
 
 
-    if (button.text() === 'C') {
-      display.text("");
+      console.log(numString);
+
+    } else if (buttonId === "cancel"){
+      screen.text("");
+      numString = '';
+    } else {
+      numString += buttonText;
+      screen.text(numString);
     }
 
-    if (button.text() === '=') {
-      operatorUsedBefore = false;
-      var expression = display.text().split(operator);
 
-      if (operator === "+"){
-        var result = parseInt(expression[0]) + parseInt(expression[1]);
-        display.text(result);
-      }
-
-      if (operator === "-"){
-        var result = parseInt(expression[0]) - parseInt(expression[1]);
-        display.text(result);
-      }
-
-      if (operator === "x"){
-        var result = parseInt(expression[0]) * parseInt(expression[1]);
-        display.text(result);
-      }
-
-      if (operator === "\xF7"){
-        var result = parseInt(expression[0]) / parseInt(expression[1]);
-        display.text(result);
-      }
-
-    }
-
-    if (isOperator && !operatorUsedBefore){
-      if (button.text() !== 'C' && button.text() !== '='){
-      operatorUsedBefore = true;
-      operator = button.text();
-      display.append(button.text());
-      }
-    }
-
-    if(!isOperator) {
-      display.append(button.text());
-    }
   });
 });
