@@ -14,37 +14,7 @@
       return;
     }
 
-    var regexp = /^(\-?\d+)(\+|\-|x|÷)(\-?\d+)$/;
-
-    var matches = screen.match(regexp);
-
-    if (matches === null) {
-      $screen.text('Error');
-      return;
-    }
-
-    var operand1 = parseInt(matches[1], 10);
-    var operand2 = parseInt(matches[3], 10);
-    var operator = matches[2];
-    var total;
-
-    if (operator === '+') {
-      total = operand1 + operand2;
-    }
-    else if (operator === '-') {
-      total = operand1 - operand2;
-    }
-    else if (operator === 'x') {
-      total = operand1 * operand2;
-    }
-    else if (operator === '÷') {
-      if (operand2 === 0) {
-        $screen.text('Error');
-        return;
-      }
-
-      total = operand1 / operand2;
-    }
+    var total = eval(screen.replace(/÷/g,'/').replace(/x/g,'*'));
 
     var nextScreen = total.toString();
 
