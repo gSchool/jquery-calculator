@@ -1,32 +1,33 @@
 (function() {
   'use strict';
 
-  var $screen = $('#screen');
+  const $screen = $('#screen');
 
-  $('#clear').on('click', function() {
+  $('#clear').click(() => {
     $screen.text('');
   });
 
-  $('#equals').on('click', function() {
-    var screen = $screen.text();
+  $('#equals').click(() => {
+    const arithExp = $screen.text();
 
-    if (screen === 'Error') {
+    if (arithExp === 'Error') {
       return;
     }
 
-    var regexp = /^(\-?\d+)(\+|\-|x|÷)(\-?\d+)$/;
+    const regExp = /^(\-?\d+)(\+|\-|x|÷)(\-?\d+)$/;
 
-    var matches = screen.match(regexp);
+    const matches = arithExp.match(regExp);
 
     if (matches === null) {
       $screen.text('Error');
       return;
     }
 
-    var operand1 = parseInt(matches[1], 10);
-    var operand2 = parseInt(matches[3], 10);
-    var operator = matches[2];
-    var total;
+    const operand1 = parseInt(matches[1]);
+    const operand2 = parseInt(matches[3]);
+    const operator = matches[2];
+
+    let total;
 
     if (operator === '+') {
       total = operand1 + operand2;
@@ -46,19 +47,20 @@
       total = operand1 / operand2;
     }
 
-    var nextScreen = total.toString();
+    const nextArithExp = total.toString();
 
-    $screen.text(nextScreen);
+    $screen.text(nextArithExp);
   });
 
-  $('.buttons').on('click', 'span:not(#clear):not(#equals)', function(event) {
-    var screen = $screen.text();
+  $('.buttons').click('span:not(#clear):not(#equals)', (event) => {
+    const arithExp = $screen.text();
 
-    if (screen === 'Error') {
+    if (arithExp === 'Error') {
       return;
     }
 
-    var nextScreen = screen + event.target.textContent;
-    $screen.text(nextScreen);
+    const nextArithExp = arithExp + $(event.target).text();
+
+    $screen.text(nextArithExp);
   });
 })();
