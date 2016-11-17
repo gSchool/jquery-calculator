@@ -14,13 +14,33 @@
       return;
     }
 
+    const nextArithExp = eval(arithExp.replace(/÷/g, '/').replace(/x/g, '*'));
+
+    // or...
+    // const nextArithExp = safeEval(arithExp);
+
+    $screen.text(nextArithExp);
+  });
+
+  $('.buttons').on('click', 'span:not(#clear):not(#equals)', (event) => {
+    const arithExp = $screen.text();
+
+    if (arithExp === 'Error') {
+      return;
+    }
+
+    const nextArithExp = arithExp + $(event.target).text();
+
+    $screen.text(nextArithExp);
+  });
+
+  function safeEval(arithExp) {
     const regExp = /^(\-?\d+)(\+|\-|x|÷)(\-?\d+)$/;
 
     const matches = arithExp.match(regExp);
 
     if (matches === null) {
-      $screen.text('Error');
-      return;
+      return 'Error';
     }
 
     const operand1 = parseInt(matches[1]);
@@ -40,27 +60,12 @@
     }
     else if (operator === '÷') {
       if (operand2 === 0) {
-        $screen.text('Error');
-        return;
+        return 'Error';
       }
 
       total = operand1 / operand2;
     }
 
-    const nextArithExp = total.toString();
-
-    $screen.text(nextArithExp);
-  });
-
-  $('.buttons').click('span:not(#clear):not(#equals)', (event) => {
-    const arithExp = $screen.text();
-
-    if (arithExp === 'Error') {
-      return;
-    }
-
-    const nextArithExp = arithExp + $(event.target).text();
-
-    $screen.text(nextArithExp);
-  });
+    return total;
+  };
 })();
