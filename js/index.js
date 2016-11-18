@@ -35,7 +35,7 @@
   });
 
   function safeEval(arithExp) {
-    const regExp = /^(\-?\d+)(\+|\-|x|÷)(\-?\d+)$/;
+    const regExp = /^(\-?\d+\.?\d*)(\+|\-|x|÷)(\-?\d+\.?\d*)$/;
 
     const matches = arithExp.match(regExp);
 
