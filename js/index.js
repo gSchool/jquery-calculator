@@ -14,7 +14,7 @@
       return;
     }
 
-    const nextArithExp = eval(arithExp.replace(/÷/g, '/').replace(/x/g, '*'));
+    const nextArithExp = eval(arithExp.replace('÷', '/').replace('x', '*'));
 
     // or...
     // const nextArithExp = safeEval(arithExp);
