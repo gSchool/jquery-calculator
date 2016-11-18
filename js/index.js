@@ -14,10 +14,23 @@
       return;
     }
 
-    const nextArithExp = eval(arithExp.replace('÷', '/').replace('x', '*'));
+    let nextArithExp;
+
+    try {
+      nextArithExp = eval(arithExp.replace('÷', '/').replace('x', '*'));
+    }
+    // Handle badly formatted expression
+    catch (exception) {
+      nextArithExp = 'Error';
+    }
+
+    // Handle divide by zero
+    if (!Number.isFinite(nextArithExp)) {
+      nextArithExp = 'Error';
+    }
 
     // or...
-    // const nextArithExp = safeEval(arithExp);
+    // nextArithExp = safeEval(arithExp);
 
     $screen.text(nextArithExp);
   });
@@ -43,8 +56,8 @@
       return 'Error';
     }
 
-    const operand1 = parseInt(matches[1]);
-    const operand2 = parseInt(matches[3]);
+    const operand1 = parseFloat(matches[1]);
+    const operand2 = parseFloat(matches[3]);
     const operator = matches[2];
 
     let total;
