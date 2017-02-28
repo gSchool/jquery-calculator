@@ -28,3 +28,45 @@ The operators
 
   TESTING/THE PROCESS
 1) I want to see if I can just start out small and figure out a way that when a number is clicked it is auto stored in the div container.
+
+$(document).ready(function(e) {
+  $('#1').click (function(){
+  var $one = $('#1');
+  console.log($one);
+  })
+  })
+}
+ - ok so it took me like 20 minutes to figure out how to do that. At least I now know how to find what I am doing by console logging. Baby steps.
+2)Now that I know the syntax for isolating #1 I want to figure out how to gets its value and then transplant it to div screen.
+- ok just figured out how to access the content of the span and it required using (this) and .text.
+
+$('#1').click (function(){
+var one = $(this).text();
+console.log(one);
+})
+})
+
+3) This will be figuring out how to actually take the value of my variable one and put it in the container. I suspect i need to make the display container a variable and have to set its value to and empty string.
+  - well I figured out how to get it on the screen i just added the value of one to the screen when clicked but right now it is only putting in the value of one. I need to set all the number buttons to specific id's and then make them one variable based on a click here is were I am at so far
+
+  $(document).ready(function(e) {
+    $('#1').click (function(){
+      var one = $(this).text();
+      console.log(one);
+      $('#screen').text(one)
+    });
+  });
+4) set all the spans with number values to an id with the corresponding number.
+5)I am going to try and figure out how to make the numbers stay on the #screen after I click a new number
+  - so here is the issue I am running into I can't get the variable one to stay in the screen. I have tried multiple methods and none of them work
+   $('#srceen').text($('#screen').text() + one)
+    - nothing pops in screen
+   $('#srceen').text($('#screen').text(one) )
+    - I get what ever number I click on in between the divs holding screen but the value wont stay
+    -LOL IDIOT LEARN TO SPELL SCREEN SHOUT OUT TO COURTNEY AND THE VALUE OF BREAKS
+    $('#screen').text($('#screen').text('') + one);
+    - this returns [object Object] and whatever number was clicked. I dont want an object I want a string.
+    -need to figure out how to make that a string so I can store new vals and keep old vals and also erase it with the C operator
+    $('#screen').text($('#screen').text() + one)
+      - This one works after I removed the '' from the content of text() I dont know why but it was creating a new object and not a string. Ask about this in class.
+  
