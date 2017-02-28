@@ -42,7 +42,11 @@ $(document).ready(function(){
                 clearVars();
                 break;
             case '÷':
-                $screen.text(parseInt(num1) / parseInt(num2));
+                if(parseInt(num1) / parseInt(num2) == Infinity)
+                    $screen.text("Error");
+                else
+                    $screen.text(parseInt(num1) / parseInt(num2));
+
                 clearVars();
                 break;
         }
