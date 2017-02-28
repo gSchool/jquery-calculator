@@ -13,6 +13,11 @@ function clearVars(){
     operator = '';
 }
 
+function throwError(){
+    $screen.text('Error');
+    clearVars();
+}
+
 $(document).ready(function(){
     $numbers.click(function(){
         if(operator){
@@ -24,31 +29,39 @@ $(document).ready(function(){
         }
     });
     $operators.click(function(){
-        operator = $(this).text();
-        $screen.text(num1 + operator);
+        if(operator){
+            throwError();
+        }else{
+            operator = $(this).text();
+            $screen.text(num1 + operator);
+        }
     });
     $equals.click(function(){
-        switch(operator){
-            case '+':
-                $screen.text(parseInt(num1) + parseInt(num2));
-                clearVars();
-                break;
-            case '-':
-                $screen.text(parseInt(num1) - parseInt(num2));
-                clearVars();
-                break;
-            case 'x':
-                $screen.text(parseInt(num1) * parseInt(num2));
-                clearVars();
-                break;
-            case '÷':
-                if(parseInt(num1) / parseInt(num2) == Infinity)
-                    $screen.text("Error");
-                else
-                    $screen.text(parseInt(num1) / parseInt(num2));
+        if(operator && num2 === ''){
+            throwError();
+        }else{
+            switch(operator){
+                case '+':
+                    $screen.text(parseInt(num1) + parseInt(num2));
+                    clearVars();
+                    break;
+                case '-':
+                    $screen.text(parseInt(num1) - parseInt(num2));
+                    clearVars();
+                    break;
+                case 'x':
+                    $screen.text(parseInt(num1) * parseInt(num2));
+                    clearVars();
+                    break;
+                case '÷':
+                    if(parseInt(num1) / parseInt(num2) == Infinity)
+                        throwError();
+                    else
+                        $screen.text(parseInt(num1) / parseInt(num2));
 
-                clearVars();
-                break;
+                    clearVars();
+                    break;
+            }
         }
     });
     $clear.click(function() {
