@@ -69,4 +69,5 @@ console.log(one);
     -need to figure out how to make that a string so I can store new vals and keep old vals and also erase it with the C operator
     $('#screen').text($('#screen').text() + one)
       - This one works after I removed the '' from the content of text() I dont know why but it was creating a new object and not a string. Ask about this in class.
-  
+#COMMIT 1 ----
+5)want to start setting operators, notably equals and clear because they will be easiest to see how to manipulate the string in #screen.
