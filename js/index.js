@@ -23,10 +23,19 @@ $(document).ready(function(){
     var replaceX = currentString.replace('x','*')
     var total = replaceX.replace('\xF7','/')
     var answer = eval(total)
-    $('#screen').text(answer)
-    if ($('#screen').text()==="Infinity"){
-      $('#screen').text('error')
-    }
+    currentString = answer
+      $('#screen').text(answer)
+      if ($('#screen').text()==="Infinity" ){
+        $('#screen').text('error')
+      }
+      // var lastHas = false
+      // if (answer.)
+    // for (var i = 0; i < answer.length; i++){
+    //   if (answer.charAt(i)=answer.charAt(i+1)){
+    //     answer = "error"
+    //   }
+    // }
+
   })
 
 
