@@ -27,14 +27,14 @@ $(document).ready(function(){
       $('#screen').text(answer)
       if ($('#screen').text()==="Infinity" ){
         $('#screen').text('error')
+      // for (var i = 0; i < currentString.length; i++){
+      //   if (currentString.charAt(i)===currentString.charAt(i-1)){
+      //     $('#screen').text('error')
+      //   }
+      // }
       }
-      // var lastHas = false
-      // if (answer.)
-    // for (var i = 0; i < answer.length; i++){
-    //   if (answer.charAt(i)=answer.charAt(i+1)){
-    //     answer = "error"
-    //   }
-    // }
+
+
 
   })
 
