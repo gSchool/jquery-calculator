@@ -19,6 +19,7 @@ $(document).ready(function() {
         } else if ($(this).attr('id') === "clear") {
           console.log("clear");
             $('#screen').text(" ");
+            answer = ""
         } else {
             answer += $(this).text();
             console.log(answer);
