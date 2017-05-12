@@ -1,7 +1,7 @@
 $(document).ready(function(){
   let $screen = $('#screen');
   let screenText = '';
-  //event listener for pressing buttons
+  //event listener for pressing buttons on calculator
   $(this).click(function(event){
     let target = event.target;
     if(target.id == 'clear'){
@@ -13,8 +13,9 @@ $(document).ready(function(){
     }
     $screen.val(screenText);
   });
-  //event listener for using keypress inputs while cursor inside calculator screen
-  $screen.keyup(function(event){
+  //event listener for using keyboard input
+  $(document).keyup(function(event){
+    $screen.focus();
     if(event.key == 'Escape'){
       screenText = '';
     } else if(event.key == 'Enter'){
