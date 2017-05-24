@@ -1,10 +1,13 @@
-var calScreen = $("#screen");
-var prevNum ='';
-var currentNum = '';
-var operator = '';
-var total = 0;
-var currentScreen = '';
+$(document).ready(function(){
+let calScreen = $("#screen");
+let prevNum ='';
+let currentNum = '';
+let operator = '';
+let total = 0;
+let currentScreen = '';
+
 //buttons.
+
 $(".buttons > span, #zero").not(".operator, .clear").click(function(){
   currentNum+=$(this).text();
   calScreen.text(currentScreen+currentNum);
@@ -21,35 +24,43 @@ $(".operator").not("#equals, #clear").click(function(){
 
 })
 
-//equals
-$("#equals").click(function(){
+//clear all function
+function clearAll(){
+  currentNum ='';
+  prevNum =='';
+  currentScreen='';
+  operator='';
+  calScreen.text('');
+}
 
-  if(operator ==="÷"){
+//equals button
+$("#equals").click(function(){
+Ops(operator)
+clearAll();
+calScreen.text(total);
+
+})
+
+//operator function
+function Ops(s){
+  if(s ==="÷"){
     total = (parseInt(prevNum) / parseInt(currentNum)).toString();
   }
-  else if(operator ==="+"){
+  else if(s ==="+"){
     total = (parseInt(prevNum) + parseInt(currentNum)).toString();
   }
-  else if(operator ==="-"){
+  else if(s ==="-"){
     total = (parseInt(prevNum) - parseInt(currentNum)).toString();
   }
-  else if(operator ==="x"){
+  else if(s ==="x"){
     total = (parseInt(prevNum) * parseInt(currentNum)).toString();
   }
+}
 
-
-calScreen.text(total);
-currentScreen ='';
-currentNum ='';
-prevNum = '';
-})
 //clear
 $("#clear").click(function(){
   if($(this).text()==="C"){
-    currentNum ='';
-    prevNum =='';
-    currentScreen='';
-    operator='';
-    calScreen.text('');
+    clearAll();
   }
 });
+})
