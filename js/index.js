@@ -1,3 +1,4 @@
+// Handle calculator button clicks
 function buttonClicked(event) {
   const btnText = event.target.innerText;
 
@@ -129,7 +130,6 @@ function evaluate(formulaString) {
 
   formulaString = evalAddSubtract(formulaString);
 
-  console.log(formulaString);
   return formulaString;
 }
 
@@ -171,15 +171,13 @@ function evalAddSubtract(formulaString) {
 function evalMultiDiv(formulaString) {
   let prevNumber = "";
   let curNumber = "";
-  let operator1 = "*";
-  let operator2 = "/";
   let foundOperator;
   let i = 0;
   let j = 0;
   let k = 0;
 
   while (!curNumber && i < formulaString.length) {
-    if (formulaString[i] === operator1 || formulaString[i] === operator2) {
+    if (formulaString[i] === "*" || formulaString[i] === "/") {
       let seekingOperator = true;
       foundOperator = formulaString[i];
       j = i;
@@ -188,7 +186,7 @@ function evalMultiDiv(formulaString) {
         j--;
 
         if (j >= 0) {
-          if (formulaString[j] !== "+" && formulaString[j] !== "-" && formulaString[j] !== "*" && formulaString[j] !== "/") {
+          if (!isOperator(formulaString[j])) {
             prevNumber += formulaString[j];
           }
           else {
@@ -208,7 +206,7 @@ function evalMultiDiv(formulaString) {
         k++;
 
         if (k < formulaString.length) {
-          if (formulaString[k] !== "+" && formulaString[k] !== "-" && formulaString[k] !== "*" && formulaString[k] !== "/") {
+          if (!isOperator(formulaString[k])) {
             curNumber += formulaString[k];
           }
           else {
@@ -240,6 +238,7 @@ function evalMultiDiv(formulaString) {
   return result.join("");
 }
 
+// Check if the passed character is a math operator or not
 function isOperator(char) {
   if (char === "+" || char === "-" || char === "*" || char === "/") {
     return true;
