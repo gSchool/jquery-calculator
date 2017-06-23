@@ -32,7 +32,9 @@ function cleanEntryString() {
 
 function checkForValidExpression(entry) {
   const entryString = cleanEntryString();
-  let patternMet = (/[0-9]+[\+\-\/\*]{1}[0-9]+([\+\-\/\*][0-9]+)?/).test(entryString);
+  //check to see whether there are 2 operands in a row
+  let patternMet = !(/[\+\-\/\*]{2}/).test(entryString);
+  // let patternMet = (/[0-9]+[\+\-\/\*]{1}[0-9]+([\+\-\/\*][0-9]+)?/).test(entryString);
   let divideByZero = /(\/0)/.test(entryString);
   if (patternMet && !divideByZero) {
     return true;
