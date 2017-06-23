@@ -34,6 +34,7 @@ function checkForValidExpression(entry) {
   const entryString = cleanEntryString();
   //check to see whether there are 2 operands in a row
   let patternMet = !(/[\+\-\/\*]{2}/).test(entryString);
+  //check to see whether there's division by 0
   let divideByZero = /(\/0)/.test(entryString);
   if (patternMet && !divideByZero) {
     return true;
