@@ -32,8 +32,17 @@ function screenUpdate(button) {
 }
 
 function doMathSon(screen){
-  let evalStr = screen.text();
-  screen.text(eval(screen.text()));
+  let screenText = screen.text();
+  let testCase = (/[\+\-\/\*]{2}/).test(screenText);
+  if(testCase){
+    screen.text("Error");
+  }
+  else if (eval(screenText) === Infinity){
+    screen.text("Error");
+  }
+  else {
+  screen.text(eval(screenText));
+  }
 }
 
 function onClear(){
